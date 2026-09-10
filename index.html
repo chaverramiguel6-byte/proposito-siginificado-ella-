@@ -1,11 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para ti amor ❤️</title>
+
+    <title>Por un futuro contigo ❤️</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -20,11 +24,15 @@
             overflow-x: hidden;
         }
 
+
+        /* CORAZONES */
+
         .corazones {
             position: fixed;
             inset: 0;
             pointer-events: none;
             overflow: hidden;
+            z-index: 0;
         }
 
         .corazon {
@@ -36,18 +44,25 @@
         }
 
         @keyframes subir {
+
             from {
                 transform: translateY(0) rotate(0deg);
                 opacity: 0;
             }
+
             20% {
                 opacity: 0.6;
             }
+
             to {
                 transform: translateY(-110vh) rotate(360deg);
                 opacity: 0;
             }
+
         }
+
+
+        /* PORTADA */
 
         .portada {
             min-height: 100vh;
@@ -58,6 +73,7 @@
             text-align: center;
             padding: 30px;
             position: relative;
+            z-index: 1;
         }
 
         .portada h1 {
@@ -72,6 +88,9 @@
             line-height: 1.7;
             margin-bottom: 35px;
         }
+
+
+        /* BOTONES */
 
         button {
             border: none;
@@ -90,12 +109,100 @@
             transform: scale(1.08);
         }
 
+
+        /* CONTENIDO */
+
         #contenido {
             display: none;
             padding: 70px 20px;
             max-width: 900px;
             margin: auto;
+            position: relative;
+            z-index: 1;
         }
+
+
+        /* PUERTA DE RECUERDOS */
+
+        .puerta-recuerdos {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .puerta-recuerdos button {
+            width: 100%;
+            max-width: 650px;
+            min-height: 180px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.6);
+            font-family: Georgia, serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            letter-spacing: 3px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .puerta-recuerdos button:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.35);
+        }
+
+
+        /* ALBUM */
+
+        #album {
+            display: none;
+        }
+
+        .album-titulo {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+        }
+
+        .album {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+
+        /* CADA RECUERDO */
+
+        .recuerdo {
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .recuerdo img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recuerdo-texto {
+            padding: 28px;
+        }
+
+        .recuerdo-texto h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .recuerdo-texto p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+
+        /* OTRAS SECCIONES */
 
         .seccion {
             background: rgba(255,255,255,0.12);
@@ -103,6 +210,7 @@
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 25px;
             padding: 35px;
+            margin-top: 40px;
             margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.15);
         }
@@ -111,50 +219,14 @@
             margin-bottom: 20px;
             font-size: 2rem;
         }
-.recuerdos h2 {
-    text-align: center;
-    font-size: 2.8rem;
-    margin-bottom: 35px;
-    letter-spacing: 2px;
-}
 
-.album {
-    display: flex;
-    flex-direction: column;
-    gap: 35px;
-}
-
-.recuerdo {
-    background: rgba(255,255,255,0.12);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-.recuerdo img {
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    display: block;
-}
-
-.recuerdo-texto {
-    padding: 25px;
-}
-
-.recuerdo-texto h3 {
-    font-size: 1.7rem;
-    margin-bottom: 15px;
-}
-
-.recuerdo-texto p {
-    line-height: 1.8;
-    font-size: 1.05rem;
-}
         .seccion p {
             line-height: 1.8;
             font-size: 1.05rem;
         }
+
+
+        /* REGALO */
 
         .regalo {
             margin-top: 25px;
@@ -170,153 +242,292 @@
             line-height: 1.8;
         }
 
+
+        /* FIRMA */
+
         .firma {
             text-align: center;
             font-size: 1.4rem;
             padding: 40px 10px;
         }
+
+
+        /* CELULAR */
+
+        @media (max-width: 600px) {
+
+            #contenido {
+                padding: 50px 15px;
+            }
+
+            .recuerdo-texto {
+                padding: 22px;
+            }
+
+            .recuerdo-texto h3 {
+                font-size: 1.5rem;
+            }
+
+            .recuerdo-texto p {
+                font-size: 1rem;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- CORAZONES -->
+
     <div class="corazones">
+
         <span class="corazon" style="left:10%; animation-delay:0s;">❤️</span>
+
         <span class="corazon" style="left:25%; animation-delay:2s;">💕</span>
+
         <span class="corazon" style="left:45%; animation-delay:4s;">❤️</span>
+
         <span class="corazon" style="left:65%; animation-delay:1s;">💗</span>
+
         <span class="corazon" style="left:85%; animation-delay:3s;">💕</span>
+
     </div>
 
+
+
+    <!-- PORTADA -->
+
     <section class="portada">
-       <h1>Por un futuro contigo</h1>
 
-<p>
-    Una forma de que, sin importar lo que pase —ya sea la distancia,
-    el tiempo, los vientos o las mareas—, puedas recordarme a mí,
-    a nosotros y lo mucho que te amo y te amaré para
-    toda mi vida. &lt;3
-</p>
+        <h1>
+            Por un futuro contigo
+        </h1>
 
-<button onclick="entrar()">
-    ¿Echar un vistazo en mi ❤️?
-</button>
+        <p>
+            Una forma de que, sin importar lo que pase —ya sea la distancia,
+            el tiempo, los vientos o las mareas—, puedas recordarme a mí,
+            a nosotros y lo mucho que te amo y te amaré, sin importar lo que pase,
+            toda mi vida. &lt;3
+        </p>
+
+        <button onclick="entrar()">
+            ¿Echar un vistazo en mi ❤️?
         </button>
+
     </section>
 
 
+
+    <!-- CONTENIDO -->
+
     <main id="contenido">
 
+
+        <!-- PUERTA RECUERDOS -->
+
+        <div class="puerta-recuerdos">
+
+            <button onclick="abrirRecuerdos()">
+                ⭐ RECUERDOS ⭐
+            </button>
+
+        </div>
+
+
+
+        <!-- ALBUM -->
+
+        <section id="album">
+
+            <h2 class="album-titulo">
+                ⭐ Nuestros recuerdos ⭐
+            </h2>
+
+
+            <div class="album">
+
+
+                <!-- RECUERDO 1 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo1.jpg" alt="El inicio de un amor">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El inicio de un amor
+                        </h3>
+
+                        <p>
+                            Aunque genshin no es lo que era antes y tampoco nosotros,
+                            nuestras cuentas y lo que vivimos siguen ahi, sabias que
+                            contando natlan, yo ayude a que te completaras todas las
+                            regiones del juego disponibles en su momento excepto
+                            monstadt? (Yo ya las habia completado previamente todas,
+                            pero lo volvia a hacer solo por acompañarte y poder pasar
+                            tiempo contigo &lt;3)
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 2 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo2.jpg" alt="El primer día">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El primer día
+                        </h3>
+
+                        <p>
+                            luego de que tuvimos sexo por primera vez y empezaron
+                            oficialmente nuestras primeras 24 horas juntos, pasamos
+                            todo el dia pegando cajas, no fue nuestra cita mas romantica,
+                            pero definitivamente entendi que sin importar el que
+                            estuvieramos haciendo, mientras estuviera contigo, yo era
+                            el hombre mas feliz del mundo
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 3 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo3.jpg" alt="El niño">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El niño
+                        </h3>
+
+                        <p>
+                            siempre dicen que para el primer hijo nunca se esta
+                            preparado, y para este definitivamente no lo estabamos,
+                            pero, aunque me dieran celos cuando lo besabas y me
+                            ignoraras a mi todo el dia, me hizo darme cuenta de que
+                            si yo tuviera hijos, no habria otra mujer en el mundo
+                            que quisiera que fuese su madre
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 4 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo4.jpg" alt="El barril sin fondo">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El barril sin fondo
+                        </h3>
+
+                        <p>
+                            Sabias que desde que llegue a colombia y volvi a entrenar
+                            decidi apegarme mas a la dieta para salirte mas barato
+                            cuando me quieras invitar? Lo siento, prometo dejar de
+                            ser tan tragon y tambien un mejor cocinero para la proxima
+                            que te vea preciosa
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 5 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo5.jpg" alt="Sin importar el tiempo">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            Sin importar el tiempo
+                        </h3>
+
+                        <p>
+                            sabias que conservo fotos de ti tan antiguas que
+                            probablemente ni te acuerdes de ellas? Realmente no
+                            cumplen ningun proposito sobre todo con lo tanto que
+                            has cambiado, pero son un eterno recordatorio de que
+                            desde que eras una niña, hasta que te convertiste en
+                            una mujer y finalmente en mi esposa, fueron varias
+                            etapas y siempre te ame y te segui amando en cada una
+                            de ellas
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 6 -->
+
+                <div class="recuerdo">
+
+                    <img src="fotos/recuerdo6.jpg" alt="Señales">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            Señales
+                        </h3>
+
+                        <p>
+                            esto no es tanto un recuerdo, es mas una curiosidad que
+                            nunca te dije y parte de algo mas grande que planeo a
+                            futuro (secreto) pero, sabias que la ultima foto de la
+                            nasa tanto en tu cumpleaños como el mio son dos galaxias
+                            colisionando? Que mas pruebas quieres mujer, cuando dos
+                            galaxias colisionan, se unen para siempre &lt;3
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SECCION FUTURA -->
+
         <section class="seccion">
-            <section class="seccion">
-    <div class="album-titulo">
-        ⭐ RECUERDOS
-    </div>
 
-    <div class="album">
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo1.jpg" alt="El inicio de un amor">
-
-            <h3>El inicio de un amor</h3>
-
-            <p>
-                Aunque genshin no es lo que era antes y tampoco nosotros,
-                nuestras cuentas y lo que vivimos siguen ahi, sabias que
-                contando natlan, yo ayude a que te completaras todas las
-                regiones del juego disponibles en su momento excepto
-                monstadt? (Yo ya las habia completado previamente todas,
-                pero lo volvia a hacer solo por acompañarte y poder pasar
-                tiempo contigo &lt;3)
-            </p>
-        </div>
-
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo2.jpg" alt="El primer día">
-
-            <h3>El primer día</h3>
-
-            <p>
-                luego de que tuvimos sexo por primera vez y empezaron
-                oficialmente nuestras primeras 24 horas juntos, pasamos
-                todo el dia pegando cajas, no fue nuestra cita mas
-                romantica, pero definitivamente entendi que sin importar
-                el que estuvieramos haciendo, mientras estuviera contigo,
-                yo era el hombre mas feliz del mundo
-            </p>
-        </div>
-
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo3.jpg" alt="El niño">
-
-            <h3>El niño</h3>
-
-            <p>
-                siempre dicen que para el primer hijo nunca se esta
-                preparado, y para este definitivamente no lo estabamos,
-                pero, aunque me dieran celos cuando lo besabas y me
-                ignoraras a mi todo el dia, me hizo darme cuenta de que
-                si yo tuviera hijos, no habria otra mujer en el mundo
-                que quisiera que fuese su madre
-            </p>
-        </div>
-
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo4.jpg" alt="El barril sin fondo">
-
-            <h3>El barril sin fondo</h3>
-
-            <p>
-                Sabias que desde que llegue a colombia y volvi a entrenar
-                decidi apegarme mas a la dieta para salirte mas barato
-                cuando me quieras invitar? Lo siento, prometo dejar de ser
-                tan tragon y tambien un mejor cocinero para la proxima que
-                te vea preciosa
-            </p>
-        </div>
-
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo5.jpg" alt="Sin importar el tiempo">
-
-            <h3>Sin importar el tiempo</h3>
-
-            <p>
-                sabias que conservo fotos de ti tan antiguas que
-                probablemente ni te acuerdes de ellas? Realmente no
-                cumplen ningun proposito sobre todo con lo tanto que has
-                cambiado, pero son un eterno recordatorio de que desde
-                que eras una niña, hasta que te convertiste en una mujer
-                y finalmente en mi esposa, fueron varias etapas y siempre
-                te ame y te segui amando en cada una de ellas
-            </p>
-        </div>
-
-
-        <div class="recuerdo">
-            <img src="fotos/recuerdo6.jpg" alt="Señales">
-
-            <h3>Señales</h3>
-
-            <p>
-                esto no es tanto un recuerdo, es mas una curiosidad que
-                nunca te dije y parte de algo mas grande que planeo a
-                futuro (secreto) pero, sabias que la ultima foto de la
-                nasa tanto en tu cumpleaños como el mio son dos galaxias
-                colisionando? Que mas pruebas quieres mujer, cuando dos
-                galaxias colisionan, se unen para siempre &lt;3
-            </p>
-        </div>
-
-    </div>
-</section>
-
-
-        <section class="seccion">
-            <h2>📖 Nuestra historia</h2>
+            <h2>
+                📖 Nuestra historia
+            </h2>
 
             <p>
                 Aquí vamos a construir nuestra historia juntos.
@@ -324,58 +535,109 @@
                 momentos, recuerdos importantes y todas esas pequeñas
                 cosas que hicieron que termináramos siendo nosotros.
             </p>
+
         </section>
 
 
+
+        <!-- REGALO -->
+
         <section class="seccion">
-            <h2>🎁 Un regalito para ti</h2>
+
+            <h2>
+                🎁 Un regalito para ti
+            </h2>
 
             <p>
                 Hay algo que quiero decirte...
             </p>
 
             <div class="regalo">
+
                 <button onclick="mostrarRegalo()">
                     Abrir regalo 🎁
                 </button>
 
                 <div id="mensaje" class="mensaje">
+
                     Te amo. ❤️
+
                     <br><br>
+
                     Y esto apenas está comenzando.
+
                 </div>
+
             </div>
+
         </section>
 
 
+
+        <!-- CUANDO ME EXTRAÑES -->
+
         <section class="seccion">
-            <h2>🌙 Cuando me extrañes</h2>
+
+            <h2>
+                🌙 Cuando me extrañes
+            </h2>
 
             <p>
                 Esta sección tendrá pequeños mensajes para esos días
                 en los que la distancia se sienta más pesada.
             </p>
+
         </section>
 
 
+
+        <!-- FIRMA -->
+
         <div class="firma">
+
             Hecho con amor, para ti. ❤️
+
         </div>
+
 
     </main>
 
 
+
+    <!-- JAVASCRIPT -->
+
     <script>
+
         function entrar() {
+
             document.querySelector(".portada").style.display = "none";
+
             document.getElementById("contenido").style.display = "block";
+
             window.scrollTo(0, 0);
+
         }
+
+
+        function abrirRecuerdos() {
+
+            document.querySelector(".puerta-recuerdos").style.display = "none";
+
+            document.getElementById("album").style.display = "block";
+
+        }
+
 
         function mostrarRegalo() {
+
             document.getElementById("mensaje").style.display = "block";
+
         }
+
     </script>
 
+
 </body>
+
 </html>
+```
