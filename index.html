@@ -226,6 +226,111 @@
         }
 
 
+        /* DEDICATORIAS */
+
+        .puerta-dedicatorias {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .puerta-dedicatorias button {
+            width: 100%;
+            max-width: 650px;
+            min-height: 180px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.6);
+            font-family: Georgia, serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            letter-spacing: 3px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .puerta-dedicatorias button:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.35);
+        }
+
+
+        /* LISTA DE DEDICATORIAS */
+
+        #dedicatorias {
+            display: none;
+            text-align: center;
+        }
+
+        .dedicatorias-titulo {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .intro-dedicatorias {
+            max-width: 650px;
+            margin: 0 auto 35px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .lista-canciones {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .cancion {
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .numero-cancion {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .cancion h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .cancion h4 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .cancion p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .boton-cancion {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 50px;
+            background: white;
+            color: #7d294d;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .boton-cancion:hover {
+            transform: scale(1.05);
+        }
+
+
         /* REGALO */
 
         .regalo {
@@ -269,6 +374,18 @@
             }
 
             .recuerdo-texto p {
+                font-size: 1rem;
+            }
+
+            .cancion {
+                padding: 25px 20px;
+            }
+
+            .cancion h3 {
+                font-size: 1.6rem;
+            }
+
+            .cancion p {
                 font-size: 1rem;
             }
 
@@ -411,7 +528,7 @@
 
                 <div class="recuerdo">
 
-                   <img src="recuerdo3.jpg.jpeg" alt="El niño">
+                    <img src="recuerdo3.jpg.jpeg" alt="El niño">
 
                     <div class="recuerdo-texto">
 
@@ -521,20 +638,195 @@
 
 
 
-        <!-- SECCION FUTURA -->
+        <!-- PUERTA DEDICATORIAS -->
 
-        <section class="seccion">
+        <div class="puerta-dedicatorias">
 
-            <h2>
-                📖 Nuestra historia
+            <button onclick="abrirDedicatorias()">
+                🎵 DEDICATORIAS 🎵
+            </button>
+
+        </div>
+
+
+
+        <!-- DEDICATORIAS -->
+
+        <section id="dedicatorias">
+
+            <h2 class="dedicatorias-titulo">
+                🎵 Canciones para ti 🎵
             </h2>
 
-            <p>
-                Aquí vamos a construir nuestra historia juntos.
-                Podemos poner cómo nos conocimos, nuestros primeros
-                momentos, recuerdos importantes y todas esas pequeñas
-                cosas que hicieron que termináramos siendo nosotros.
+            <p class="intro-dedicatorias">
+                Hay cosas que no siempre sé cómo decirte, así que a veces prefiero
+                dejar que una canción hable por mí. ❤️
             </p>
+
+
+            <div class="lista-canciones">
+
+
+                <!-- CANCIÓN 1 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        01
+                    </div>
+
+                    <h3>
+                        You Are My Destiny
+                    </h3>
+
+                    <h4>
+                        Paul Anka
+                    </h4>
+
+                    <p>
+                        Sabes que no creo en el destino, pero sigo creyendo que mi
+                        futuro contigo, es algo más que una cuestión de suerte o
+                        coincidencias.
+                    </p>
+
+                    <a href="https://youtu.be/qolpZlDPQMg?si=NTJMfFaNXauyNqIg"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 2 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        02
+                    </div>
+
+                    <h3>
+                        My Way of Life
+                    </h3>
+
+                    <h4>
+                        Frank Sinatra
+                    </h4>
+
+                    <p>
+                        No sé amar a una mujer que no seas tú, no conozco ningún
+                        camino, que no me lleve de vuelta a ti, para mí, solo existes.
+                    </p>
+
+                    <a href="https://youtu.be/OR7onE6B6_Y?si=nxUrtyzUTQSeeDPL"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 3 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        03
+                    </div>
+
+                    <h3>
+                        This I Love
+                    </h3>
+
+                    <h4>
+                        Guns N' Roses
+                    </h4>
+
+                    <p>
+                        Una carta del pasado hecha para que yo te la diera en el futuro.
+                    </p>
+
+                    <a href="https://youtu.be/hZL_ucAUTPQ?si=C3GD-zHfhZaVMeRj"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 4 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        04
+                    </div>
+
+                    <h3>
+                        Tightrope
+                    </h3>
+
+                    <h4>
+                        LP
+                    </h4>
+
+                    <p>
+                        Recuerdo habértela dedicado antes, fue en un contexto y
+                        situación parecidas y esa es la razón por la que está aquí,
+                        además que jamás olvidaré que la primera canción que me
+                        dedicaste, fue de LP, I'm Only Good With You.
+                    </p>
+
+                    <a href="https://youtu.be/ni75m1jgjiw?si=T6xpDOo8xgDo7Ekn"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 5 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        05
+                    </div>
+
+                    <h3>
+                        Serendipity
+                    </h3>
+
+                    <h4>
+                        Jimin (BTS)
+                    </h4>
+
+                    <p>
+                        Sé que esta no la canta tu otro novio, y quizás no sea la
+                        mejor opción para ti, pero creo que es una forma de hablarte
+                        en tu idioma y recalcar lo que dije en la primera canción,
+                        esto es más que suerte, coincidencias, es algo que va mucho
+                        más lejos.
+                    </p>
+
+                    <a href="https://youtu.be/LNsi_d7Of7g?si=E4iXmB5rn2FJcNje"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+            </div>
 
         </section>
 
@@ -624,6 +916,15 @@
             document.querySelector(".puerta-recuerdos").style.display = "none";
 
             document.getElementById("album").style.display = "block";
+
+        }
+
+
+        function abrirDedicatorias() {
+
+            document.querySelector(".puerta-dedicatorias").style.display = "none";
+
+            document.getElementById("dedicatorias").style.display = "block";
 
         }
 
