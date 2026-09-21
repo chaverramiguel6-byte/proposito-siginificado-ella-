@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Por un futuro contigo ❤️</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, serif;
+            background: #F8C8DC;
+            color: white;
+            overflow-x: hidden;
+        }
+
+
+        /* CORAZONES */
+
+        .corazones {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .corazon {
+            position: absolute;
+            bottom: -50px;
+            animation: subir 8s linear infinite;
+            opacity: 0.5;
+            font-size: 20px;
+        }
+
+        @keyframes subir {
+
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.6;
+            }
+
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+
+        }
+
+
+        /* PORTADA */
+
+        .portada {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portada h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .portada p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+
+        /* BOTONES */
+
+        button {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: white;
+            color: #7d294d;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        button:hover {
+            transform: scale(1.08);
+        }
+
+
+        /* CONTENIDO */
+
+        #contenido {
+            display: none;
+            padding: 70px 20px;
+            max-width: 900px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* PUERTA DE RECUERDOS */
+
+        .puerta-recuerdos {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .puerta-recuerdos button {
+            width: 100%;
+            max-width: 650px;
+            min-height: 180px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.6);
+            font-family: Georgia, serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            letter-spacing: 3px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .puerta-recuerdos button:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.35);
+        }
+
+
+        /* ALBUM */
+
+        #album {
+            display: none;
+        }
+
+        .album-titulo {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+        }
+
+        .album {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+
+        /* CADA RECUERDO */
+
+        .recuerdo {
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .recuerdo img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .recuerdo-texto {
+            padding: 28px;
+        }
+
+        .recuerdo-texto h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .recuerdo-texto p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+
+        /* OTRAS SECCIONES */
+
+        .seccion {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 25px;
+            padding: 35px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+
+        .seccion h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .seccion p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+
+        /* LO QUE HACE QUE PIENSE EN TI + RAZONES */
+        .puerta-pienso, .puerta-razones { text-align:center; margin-top:40px; margin-bottom:40px; }
+        .puerta-pienso button, .puerta-razones button { width:100%; max-width:650px; min-height:180px; border-radius:30px; background:rgba(255,255,255,0.25); color:white; border:3px solid rgba(255,255,255,0.6); font-family:Georgia,serif; font-size:clamp(2rem,6.5vw,3.7rem); letter-spacing:2px; text-shadow:0 4px 15px rgba(0,0,0,0.25); box-shadow:0 15px 40px rgba(0,0,0,0.2); }
+        .puerta-pienso button:hover, .puerta-razones button:hover { transform:scale(1.03); background:rgba(255,255,255,0.35); }
+        #pienso, #razones { display:none; text-align:center; }
+        .pienso-titulo, .razones-titulo { font-size:clamp(2rem,7vw,2.8rem); margin-bottom:18px; letter-spacing:2px; }
+        .intro-pienso, .intro-razones { max-width:720px; margin:0 auto 35px; line-height:1.85; font-size:1.05rem; }
+        .lista-pienso, .lista-razones { display:flex; flex-direction:column; gap:30px; max-width:700px; margin:0 auto; }
+        .pienso-card, .razon-card { background:rgba(255,255,255,0.15); border-radius:25px; overflow:hidden; border:1px solid rgba(255,255,255,0.25); box-shadow:0 10px 35px rgba(0,0,0,0.15); }
+        .pienso-card img { width:100%; max-height:500px; object-fit:cover; display:block; }
+        .pienso-texto, .razon-texto { padding:28px; text-align:left; }
+        .pienso-texto h3, .razon-texto h3 { font-size:1.8rem; margin-bottom:15px; text-align:center; }
+        .pienso-texto p, .razon-texto p { line-height:1.8; font-size:1.05rem; margin:0; }
+        .razon-card { padding:28px; }
+        .razon-texto { padding:0; }
+
+
+        /* DEDICATORIAS */
+
+        .puerta-dedicatorias {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .puerta-dedicatorias button {
+            width: 100%;
+            max-width: 650px;
+            min-height: 180px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.6);
+            font-family: Georgia, serif;
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            letter-spacing: 3px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .puerta-dedicatorias button:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.35);
+        }
+
+
+        /* LISTA DE DEDICATORIAS */
+
+        #dedicatorias {
+            display: none;
+            text-align: center;
+        }
+
+        .dedicatorias-titulo {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .intro-dedicatorias {
+            max-width: 650px;
+            margin: 0 auto 35px;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .lista-canciones {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .cancion {
+            background: rgba(255,255,255,0.15);
+            border-radius: 25px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.15);
+        }
+
+        .numero-cancion {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .cancion h3 {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .cancion h4 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-bottom: 20px;
+            opacity: 0.85;
+        }
+
+        .cancion p {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+        }
+
+        .boton-cancion {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 50px;
+            background: white;
+            color: #7d294d;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .boton-cancion:hover {
+            transform: scale(1.05);
+        }
+
+
+        /* REGALO */
+
+        .regalo {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .mensaje {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.18);
+            line-height: 1.8;
+        }
+
+        .foto-regalo {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            display: block;
+            margin: 25px auto 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+
+        /* FIRMA */
+
+        .firma {
+            text-align: center;
+            font-size: 1.4rem;
+            padding: 40px 10px;
+        }
+
+
+
+        /* ============================= */
+        /* LO QUE TE QUIERO DECIR */
+        /* ============================= */
+
+        .puerta-cartas {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+
+        .puerta-cartas button {
+            width: 100%;
+            max-width: 650px;
+            min-height: 180px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 3px solid rgba(255,255,255,0.6);
+            font-family: Georgia, serif;
+            font-size: clamp(2rem, 6.5vw, 3.7rem);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .puerta-cartas button:hover {
+            transform: scale(1.03);
+            background: rgba(255,255,255,0.35);
+        }
+
+        #cartas {
+            display: none;
+            text-align: center;
+        }
+
+        .cartas-titulo {
+            font-size: clamp(2rem, 7vw, 2.8rem);
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+        }
+
+        .intro-cartas {
+            max-width: 720px;
+            margin: 0 auto 40px;
+            line-height: 1.85;
+            font-size: 1.05rem;
+        }
+
+        .sobres {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .sobre {
+            position: relative;
+            min-height: 150px;
+            padding: 28px 25px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.18);
+            border: 2px solid rgba(255,255,255,0.45);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+        }
+
+        .sobre:hover {
+            transform: translateY(-4px) scale(1.01);
+            background: rgba(255,255,255,0.28);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.22);
+        }
+
+        .sobre-icono {
+            display: block;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.12));
+        }
+
+        .sobre h3 {
+            font-size: 1.65rem;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.18);
+        }
+
+        .sobre::after {
+            content: "Haz clic para abrir";
+            display: block;
+            margin-top: 9px;
+            font-size: 0.9rem;
+            opacity: 0.75;
+            letter-spacing: 1px;
+        }
+
+        /* VISOR DE CARTA */
+
+        #visor-carta {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+            padding: 25px 15px;
+            background: rgba(70, 20, 42, 0.58);
+            backdrop-filter: blur(8px);
+            overflow-y: auto;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #visor-carta.visible {
+            display: flex;
+            animation: aparecerCarta 0.35s ease;
+        }
+
+        @keyframes aparecerCarta {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .carta-papel {
+            width: 100%;
+            max-width: 760px;
+            max-height: calc(100vh - 50px);
+            overflow-y: auto;
+            padding: 45px 38px;
+            border-radius: 8px;
+            background: #fffafc;
+            color: #5c2940;
+            text-align: left;
+            box-shadow: 0 20px 70px rgba(0,0,0,0.35);
+            position: relative;
+            animation: cartaEntrar 0.45s ease;
+        }
+
+        @keyframes cartaEntrar {
+            from {
+                transform: translateY(35px) scale(0.97);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .carta-papel::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(125,41,77,0.13);
+            pointer-events: none;
+        }
+
+        .carta-papel h2 {
+            text-align: center;
+            font-size: clamp(1.8rem, 6vw, 2.6rem);
+            margin-bottom: 30px;
+            color: #7d294d;
+        }
+
+        .carta-texto {
+            position: relative;
+            z-index: 1;
+        }
+
+        .carta-texto p {
+            font-size: 1.08rem;
+            line-height: 1.95;
+            margin-bottom: 22px;
+        }
+
+        .carta-texto strong {
+            color: #7d294d;
+        }
+
+        .cerrar-carta {
+            display: block;
+            margin: 30px auto 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CELULAR */
+
+        @media (max-width: 600px) {
+
+            #contenido {
+                padding: 50px 15px;
+            }
+
+            .recuerdo-texto {
+                padding: 22px;
+            }
+
+            .recuerdo-texto h3 {
+                font-size: 1.5rem;
+            }
+
+            .recuerdo-texto p {
+                font-size: 1rem;
+            }
+
+            .cancion {
+                padding: 25px 20px;
+            }
+
+            .cancion h3 {
+                font-size: 1.6rem;
+            }
+
+            .cancion p {
+                font-size: 1rem;
+            }
+
+
+            .puerta-pienso button,
+            .puerta-razones button {
+                min-height: 150px;
+                font-size: clamp(1.65rem, 8vw, 2.7rem);
+            }
+
+            .pienso-texto, .razon-texto {
+                padding: 22px;
+            }
+
+            .pienso-texto p, .razon-texto p {
+                font-size: 1rem;
+            }
+
+            .puerta-cartas button {
+                min-height: 150px;
+                font-size: clamp(1.65rem, 8vw, 2.7rem);
+            }
+
+            .intro-cartas { font-size: 1rem; }
+
+            .sobre {
+                min-height: 135px;
+                padding: 25px 18px;
+            }
+
+            .sobre h3 { font-size: 1.4rem; }
+
+            .carta-papel {
+                padding: 35px 23px;
+                max-height: calc(100vh - 30px);
+            }
+
+            .carta-papel::before { inset: 8px; }
+
+            .carta-texto p {
+                font-size: 1rem;
+                line-height: 1.85;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- CORAZONES -->
+
+    <div class="corazones">
+
+        <span class="corazon" style="left:10%; animation-delay:0s;">❤️</span>
+
+        <span class="corazon" style="left:25%; animation-delay:2s;">💕</span>
+
+        <span class="corazon" style="left:45%; animation-delay:4s;">❤️</span>
+
+        <span class="corazon" style="left:65%; animation-delay:1s;">💗</span>
+
+        <span class="corazon" style="left:85%; animation-delay:3s;">💕</span>
+
+    </div>
+
+
+
+    <!-- PORTADA -->
+
+    <section class="portada">
+
+        <h1>
+            Por un futuro contigo
+        </h1>
+
+        <p>
+            Una forma de que, sin importar lo que pase —ya sea la distancia,
+            el tiempo, los vientos o las mareas—, puedas recordarme a mí,
+            a nosotros y lo mucho que te amo y te amaré, sin importar lo que pase,
+            toda mi vida. &lt;3
+        </p>
+
+        <button onclick="entrar()">
+            ¿Echar un vistazo en mi ❤️?
+        </button>
+
+    </section>
+
+
+
+    <!-- CONTENIDO -->
+
+    <main id="contenido">
+
+
+        <!-- PUERTA RECUERDOS -->
+
+        <div class="puerta-recuerdos">
+
+            <button onclick="abrirRecuerdos()">
+                ⭐ RECUERDOS ⭐
+            </button>
+
+        </div>
+
+
+
+        <!-- ALBUM -->
+
+        <section id="album">
+
+            <h2 class="album-titulo">
+                ⭐ Nuestros recuerdos ⭐
+            </h2>
+
+
+            <div class="album">
+
+
+                <!-- RECUERDO 1 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo1.jpg.jpeg" alt="El inicio de un amor">
+                    
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El inicio de un amor
+                        </h3>
+
+                        <p>
+                            Aunque genshin no es lo que era antes y tampoco nosotros,
+                            nuestras cuentas y lo que vivimos siguen ahi, sabias que
+                            contando natlan, yo ayude a que te completaras todas las
+                            regiones del juego disponibles en su momento excepto
+                            monstadt? (Yo ya las habia completado previamente todas,
+                            pero lo volvia a hacer solo por acompañarte y poder pasar
+                            tiempo contigo &lt;3)
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 2 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo2.jpg.jpeg" alt="El primer día">
+                    
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El primer día
+                        </h3>
+
+                        <p>
+                            luego de nuestra primera noche empezaron
+                            oficialmente nuestras primeras 24 horas juntos, pasamos
+                            todo el dia pegando cajas, no fue nuestra cita mas romantica,
+                            pero definitivamente entendi que sin importar el que
+                            estuvieramos haciendo, mientras estuviera contigo, yo era
+                            el hombre mas feliz del mundo
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 3 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo3.jpg.jpeg" alt="El niño">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El niño
+                        </h3>
+
+                        <p>
+                            siempre dicen que para el primer hijo nunca se esta
+                            preparado, y para este definitivamente no lo estabamos,
+                            pero, aunque me dieran celos cuando lo besabas y me
+                            ignoraras a mi todo el dia, me hizo darme cuenta de que
+                            si yo tuviera hijos, no habria otra mujer en el mundo
+                            que quisiera que fuese su madre
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 4 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo4.jpg.jpeg" alt="El barril sin fondo">
+                    
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            El barril sin fondo
+                        </h3>
+
+                        <p>
+                            Sabias que desde que llegue a colombia y volvi a entrenar
+                            decidi apegarme mas a la dieta para salirte mas barato
+                            cuando me quieras invitar? Lo siento, prometo dejar de
+                            ser tan tragon y tambien un mejor cocinero para la proxima
+                            que te vea preciosa
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 5 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo5.jpg.jpeg" alt="Sin importar el tiempo">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            Sin importar el tiempo
+                        </h3>
+
+                        <p>
+                            sabias que conservo fotos de ti tan antiguas que
+                            probablemente ni te acuerdes de ellas? Realmente no
+                            cumplen ningun proposito sobre todo con lo tanto que
+                            has cambiado, pero son un eterno recordatorio de que
+                            desde que eras una niña, hasta que te convertiste en
+                            una mujer y finalmente en mi esposa, fueron varias
+                            etapas y siempre te ame y te segui amando en cada una
+                            de ellas
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RECUERDO 6 -->
+
+                <div class="recuerdo">
+
+                    <img src="recuerdo6.jpg.jpg" alt="Señales">
+
+                    <div class="recuerdo-texto">
+
+                        <h3>
+                            Señales
+                        </h3>
+
+                        <p>
+                            esto no es tanto un recuerdo, es mas una curiosidad que
+                            nunca te dije y parte de algo mas grande que planeo a
+                            futuro (secreto) pero, sabias que la ultima foto de la
+                            nasa tanto en tu cumpleaños como el mio son dos galaxias
+                            colisionando? Que mas pruebas quieres mujer, cuando dos
+                            galaxias colisionan, se unen para siempre &lt;3
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            
+            <!-- RECUERDO 7 -->
+            <div class="recuerdo">
+                
+                <img src="recuerdo7.jpeg" alt="Minecraft">
+                
+                <div class="recuerdo-texto">
+                    
+                    <h3>Minecraft</h3>
+                    <p>¿Recuerdas nuestro servidor? ¿Recuerdas las flameadas y toxiqueadas tan horribles que me metías a veces por manco, pero cómo aun así nos divertíamos y creábamos recuerdos bonitos? Recuerdo que lo de la foto, es una carta que me diste cuando te di el primer diamante que encontre haha, de alguna forma, me devolviste tres diamantes, recuerdos como ese, calidecen mi corazon todas las noches. Algo que tambien jamás olvidaré es el esfuerzo tan gigante que me costó hacer nuestra casa en su momento, bloque por bloque. Recuerdo que tardé casi una semana, pero solo ver lo mucho que te gustó hizo que valiera completamente la pena. En un futuro, planeo hacerlo de nuevo, dándote el hogar que deseas. No importa si es el más caro o el más difícil de conseguir. Si hace falta, moriré solo por volver a ver la felicidad en tu rostro.</p>
+                </div>
+            </div>
+
+
+            
+            <!-- RECUERDO 8 -->
+            <div class="recuerdo">
+                
+                <img src="recuerdo8.jpeg" alt="Donkey Kong">
+                
+                <div class="recuerdo-texto">
+                    
+                    <h3>Donkey Kong</h3>
+                    <p>No sabes lo feliz que me hizo que me mostraras esta parte de tu infancia.
+
+Recuerdo que sacamos ese televisor viejo y empolvado de la sala de invitados. Lo tuve que hacer yo porque tenías miedo de entrar por las ratas, hahsha.
+
+Pero cuando lo sacamos, tú conectaste la vieja consola y pudimos jugar... wow. Fue uno de los recuerdos más sinceros y que más marcó nuestra relación durante el resto del viaje.
+
+¿Te acuerdas de la idea de subir una historia en la piscina con la canción del nivel del agua? ¿O la Gamescom a la que fuimos? ¿O de cómo me ponías las manos en el pecho y yo te hacía el DK solo para verte reír? HAHSHAH.
+
+Son cosas que atesoraré toda la vida.</p>
+                </div>
+            </div>
+
+
+            <!-- RECUERDO 9 -->
+            <div class="recuerdo">
+
+                <img src="recuerdo9.jpeg" alt="Tu graduación">
+
+                <div class="recuerdo-texto">
+
+                    <h3>Tu graduación</h3>
+                    <p>ñ</p>
+
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+        <!-- PUERTA LO QUE HACE QUE PIENSE EN TI -->
+        <div class="puerta-pienso">
+            <button onclick="abrirPienso()">
+                💭 LO QUE HACE QUE PIENSE EN TI 💭
+            </button>
+        </div>
+
+        <!-- LO QUE HACE QUE PIENSE EN TI -->
+        <section id="pienso">
+            <h2 class="pienso-titulo">💭 Lo que hace que piense en ti 💭</h2>
+            <p class="intro-pienso">
+                Hay cosas que aparecen en mi día a día y consiguen hacerme pensar en ti.
+
+Puede ser cualquier cosa, hasta una tontería que probablemente para cualquier otra persona no significaría nada.
+
+Pero por alguna razón, para mí sí.
+
+Así que quise guardar aquí algunas de esas cosas. Que me llevan devuelta a ti, incluso cuando no estoy pensando en hacerlo. 
+
+
+            </p>
+            <div class="lista-pienso">
+
+                <div class="pienso-card">
+                    <img src="pienso1.jpeg" alt="El atardecer">
+                    <div class="pienso-texto">
+                        <h3>El atardecer</h3>
+                        <p>Hace casi más de un año, me preguntaste qué paleta de colores te diría que eres. Recuerdo haberte dicho que colores pastel, tierra y ligeramente rosados, pero realmente, con el tiempo y luego de El Salvador, me di cuenta de algo: tus colores son los mismos que los del atardecer. Y desde eso, cada vez que veo acá el atardecer en Medellín, te me vienes a la mente. Tan intensa como el rojo, tan alegre como los rayos amarillos y tan tierna y dulce como ese pequeño rosa débil que de vez en cuando se escapa entre las nubes. Observarte es como ver un atardecer, un atardecer infinito y sumamente bello.</p>
+                    </div>
+                </div>
+
+                <div class="pienso-card">
+                    <img src="pienso2.jpeg" alt="Juno">
+                    <div class="pienso-texto">
+                        <h3>Juno</h3>
+                        <p>En momentos así me arrepiento de que descubrieras a Juno y Overwatch. Cada que juego y en mi partida hay una Juno, no puedo evitar recordar a la mejor y más hermosa main Juno que he conocido. Me pregunto si a ti te pasará lo mismo con Genji, pero bueno... Ojalá pronto la Juno que me acompañe en mis partidas seas tú.</p>
+                    </div>
+                </div>
+
+                <div class="pienso-card">
+                    <img src="pienso3.jpeg" alt="Titanes del Pacífico">
+                    <div class="pienso-texto">
+                        <h3>Titanes del Pacífico</h3>
+                        <p>Esta realmente no es rara, y se entiende el porqué me recuerda a ti. Creo que eres la única persona en este mundo que conozco que es fan de Titanes del Pacífico.
+
+Cuando la vimos por primera vez, aprendí una cosa valiosa: cuando te conocí, ya eras casi una mujer hecha y derecha, pero tus gustos, tus frikadas y las cosas de tu infancia me demuestran que detrás de la mujer que eres hoy, primero hubo una niña, probablemente adorable.
+
+Y si por lo menos a día de hoy no es mi esposa, me gustaría que en el futuro se lo heredara a mi hija.
+</p>
+                    </div>
+                </div>
+
+                <div class="pienso-card">
+                    <img src="pienso4.jpeg" alt="Disney">
+                    <div class="pienso-texto">
+                        <h3>Disney</h3>
+                        <p>Yo realmente de chiquito vi una que otra película de Disney, claro, pero nunca fui realmente un fan hasta que descubrí la mucha influencia que tuvieron en ti. Creciste queriendo ser una princesa y luego no solo eso, sino que querías crearlas: a ellas, sus castillos o incluso más; los mundos de magia y bosques encantados en los que vivían. La influencia que tuvo en ti para ser la tremenda artista que eres a día de hoy es impresionante, y por eso me recuerda tanto a ti. Eres toda una princesa, solo te falta tu príncipe. ¿Me darías ese honor?</p>
+                    </div>
+                </div>
+
+                <div class="pienso-card">
+                    <img src="pienso5.jpeg" alt="Spider-Man Miguel O'Hara">
+                    <div class="pienso-texto">
+                        <h3>Spider-Man (Miguel O'Hara)</h3>
+                        <p>Esta también todos sabemos el porqué, hahaha. No es ningún misterio lo mucho que te gustó el personaje y cómo me bombardeaste con él cuando salió la segunda película de Spider-Verse. Por eso, cada vez que lo veo, me acuerdo de su fan más cansona y tierna. Pero hey, ya tienes un Miguel, y cuando salga la próxima de Spider-Verse, prometo estar ahí para que podamos verla juntos y estar aún más mamado para que puedas tener a tu propio Miguel, en cuerpo y nombre. Muak.</p>
+                    </div>
+                </div>
+
+                <div class="pienso-card">
+                    <img src="pienso6.jpeg" alt="Zorros">
+                    <div class="pienso-texto">
+                        <h3>Zorros</h3>
+                        <p>Recuerdo que durante un tiempo tú decías que tu animal espiritual era un zorro, y yo te molestaba con que eras un perro igualito al Bengy, hahshas.
+
+Al final, además de lo tierno, recuerdo por qué, con el tiempo, aunque nunca te lo dije, empezaría a relacionarte y a recordarte cuando veía uno.
+
+En muchas culturas son guías y seres enviados para ayudarnos a las personas de acá abajo, y si de algo estoy seguro es de que ahora mismo no tengo toda la claridad del mundo, pero gracias a ti, y desde que te conocí, hiciste que un hombre que jamás tuvo un sueño o ganas de caminar un camino aprendiera a soñar, a caminar, a tener esperanzas en un futuro, metas y logros por cumplir.
+
+Cuando estaba estudiando y me sentabas y me ayudabas a comprender qué es lo que quería para mi vida, descubrí que no eres una mujer cualquiera, que eres una mujer especial, única y definitivamente diferente.
+
+Ahora he aprendido a tener mis sueños, y creo que el más importante que tengo es volver contigo.
+</p>
+                    </div>
+                </div>
+
+                                <div class="pienso-card">
+                    <img src="pienso7.jpeg" alt="Miel">
+                    <div class="pienso-texto">
+                        <h3>Miel</h3>
+                        <p>A veces mi cabeza encuentra conexiones entre cosas que, en principio, no parecen tener mucho que ver. Con la miel me pasa contigo: su dulzura me recuerda a tu forma de ser, y ese tono cálido y profundo me hace pensar en tus ojos. Es curioso cómo algo tan sencillo puede aparecer en un momento cualquiera y, sin avisar, llevarme directamente a ti.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PUERTA RAZONES -->
+        <div class="puerta-razones">
+            <button onclick="abrirRazones()">
+                💗 RAZONES 💗
+            </button>
+        </div>
+
+        <!-- RAZONES -->
+        <section id="razones">
+            <h2 class="razones-titulo">💗 Razones 💗</h2>
+            <p class="intro-razones">
+                Hola, mi amor. Bienvenida a Razones, una sección que actualizaré constantemente, puesto que quizá ahora mismo encuentres razones para decirme que no, pero yo intentaré prácticamente todos los días que encuentres aquí razones para que me digas que sí.
+
+Con la fe de que, si yo puedo encontrar tantas razones para seguir juntos a cada rato, quién sabe, quizá tú puedas simpatizar o incluso encontrar algunas tú misma con el tiempo.
+
+            </p>
+            <div class="lista-razones">
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>1. Sin importar el qué</h3>
+                        <p>Oh, mi niña hermosa. Casi no queda nada de la persona que conocí hace años. Has cambiado y has crecido tanto, y me alegra y me enorgullece haber sido el que te acompañó.
+
+Y no solo eso: te amo en cada una de tus etapas.
+
+¿Qué más quieres para tu vida que un hombre que, sin importar tu físico, gustos o personalidad, siempre te ha amado sin importar el qué?
+
+Por eso debemos permanecer: por el amor tan intenso y constante que he guardado por ti sin importarme nada, ni siquiera yo mismo.
+
+Ahora tú crees que no me amas, o que quizás lo mejor sería seguir otro camino, pero estoy seguro de que en ese corazón, como tú misma dijiste en algún momento, siempre habrá un espacio para mí.
+
+Solo es cuestión de que lo encuentres.
+</p>
+                    </div>
+                </div>
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>2. Por lo que falta</h3>
+                        <p>Hemos construido tanto, pero tanto, incluso quizás suficiente como para más de una vida, pero no para nuestro amor.
+
+Hemos puesto juntos ladrillo por ladrillo en esta relación. Hemos trabajado, hemos prosperado, pero sin ti y tú sin mí, ¿quién estará ahí para seguir construyendo?
+
+¿Quién levantará no solo una pared, sino un hogar con el otro?
+
+Solo hay una persona merecedora de ese derecho en mi vida, al igual que creo que tú en la tuya.
+
+Y la respuesta es nosotros.
+</p>
+                    </div>
+                </div>
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>3. Porque todavía lo tenemos</h3>
+                        <p>Sé que piensas que estar conmigo es agotador o que ya no se siente como antes, pero sé que es porque en tu mente ahora mismo estás inundada de recuerdos y sentimientos que no nos representan, que no son lo que somos.
+
+La última vez que estuvimos juntos, que pudimos llamar, es la prueba de eso.
+
+Quizás tú no lo recuerdes, pero yo sí. Fue justo después de nuestra discusión sobre política, que nos tuvo apartados durante un buen rato. Me acuerdo de que sufrí como no tienes idea, pero cuando volviste, y no solo eso, sino cuando llamamos, nos reímos, la pasamos bien, fuimos... felices.
+
+Y al final de la noche, cuando íbamos a dormir, tú rompiste el silencio con un “te amo”, que te respondí con todas las fuerzas de mi corazón.
+
+Preciosa, no tiene por qué ser así.
+
+Sé que cuando se te mete en la cabeza la idea de llamar conmigo, piensas en mil cosas antes que en lo que te acabo de contar, y eso está mal. Piensa, de verdad: ¿tan mal es estar conmigo?
+
+Y si lo es, sabes que estoy dándolo todo por cambiar.
+
+Recuerda que, al final del día, más que hacerte sentir incómoda, son más las veces que he logrado hacerte sentir amada, hacerte reír y hacerte sentir en confianza.
+
+Porque soy tu hombre.
+
+Y ojalá lo tengas en cuenta la próxima vez que se te pase por la cabeza pasar tiempo conmigo.
+</p>
+                    </div>
+                </div>
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>4. La cama</h3>
+                        <p>No soy el más experimentado, tú tampoco, pero Dios... mujer.
+
+La experiencia de acostarme contigo, de entregarme a ti y a tu cuerpo, al igual que tú al mío, sé que no la podré sentir con ninguna otra mujer en la vida, y no creo que tú con ningún otro hombre.
+
+Porque contigo cumplí mi sueño y aquello que siempre he dicho: no solo tuvimos sexo, Esther, por Dios. Cada vez que nos abrazábamos, que nos rozábamos y azotábamos nuestras caderas como unos animales, sentía mi alma un poco más cerca de la tuya.
+
+Por favor, nena. Por favor, mi Esther hermosa.
+
+No dormiré tranquilo si jamás vuelvo a tenerte, y sé que tú no serás feliz si no vuelves a poseerme.
+
+Ámame y déjame amarte más allá de la carne. Recuérdame que me encantas, que te encanto y déjame volver a impregnar cada fibra de tu ser con mi esencia, y el mío con la tuya.
+
+Por el bien de los dos.
+</p>
+                    </div>
+                </div>
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>5. Por esas pequeñas cosas</h3>
+                        <p>
+
+¿Sabes? A veces dicen que hay cosas pequeñas que llenan el corazón.
+
+¿Recuerdas que a veces simplemente nos abrazábamos y bailábamos? ¿O cuando nos acostábamos juntos en el sofá a ver películas? ¿O los parches comiendo Nutella y viendo icebergs de Aimep3, hshahsahs?
+
+Son cosas pequeñas, realmente, pero esas cosas pequeñas son la clave para llenar un corazón.
+
+Y un corazón lleno crea un alma plena, y un alma plena crea una sonrisa.
+
+Ya no lo hagas por mí, preciosa. A estas alturas, ni siquiera es por nosotros. Es por ti.
+
+Por un futuro donde tus sonrisas sean más reales y tu corazón sea más feliz.
+
+Por el futuro que te ofrezco.
+</p>
+                    </div>
+                </div>
+
+               <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>6. Por Volver a Elgirnos</h3>
+                        <p>
+
+Tantos años, y no se te hace raro, que incluso a pesar de la distancia, los problemas, 
+incluso crisis. ¿Siempre nos volvamos a elegir? Mujer, el amor no se trata de altos, ni de bajos, hay altos y bajos pero volver
+a elegir a la misma persona para luchar contra ellos es de lo que se trata una relacion, un amor de verdad, quizas hoy no, pero brindo porque prontamente
+abras los ojos y puedas volver a elegirme a mi, como yo ahora te estoy eligiendo a ti una vez mas.
+</p>
+                    </div>
+                </div>
+
+                <div class="razon-card">
+                    <div class="razon-texto">
+                        <h3>7. Por una vida sin soledad</h3>
+                        <p>
+En algunas ocasiones, vivir y afrontar los problemas que conlleva vivir es suficientemente dificil para acabar con mas de una persona, algo que gracias al cielo,
+no tuve que conllevar completamente por mi cuenta, y tu tampoco. Hay muchas cosas horribles ahi afuera, y una de las peores es la soledad, pero yo nunca me termine de sentir solo teniendote a ti,
+fuiste una luz que alumbro los cielos mas oscuros, y creo que yo para ti tambien lo fui mas de una vez, pase lo que pase, si nos tenemos nunca estaremos solos.                            
+</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PUERTA DEDICATORIAS -->
+        <div class="puerta-dedicatorias">
+            <button onclick="abrirDedicatorias()">
+                🎵 DEDICATORIAS 🎵
+            </button>
+        </div>
+
+
+
+        <!-- DEDICATORIAS -->
+
+        <section id="dedicatorias">
+
+            <h2 class="dedicatorias-titulo">
+                🎵 Canciones para ti 🎵
+            </h2>
+
+            <p class="intro-dedicatorias">
+                No siempre crees lo que digo, o lo entiendes.
+                tal vez con musica puedas comprender el idioma de mi corazon. ❤️
+            </p>
+
+
+            <div class="lista-canciones">
+
+
+                <!-- CANCIÓN 1 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        1
+                    </div>
+
+                    <h3>
+                        You Are My Destiny
+                    </h3>
+
+                    <h4>
+                        Paul Anka
+                    </h4>
+
+                    <p>
+                        Sabes que no creo en el destino, pero sigo creyendo que mi
+                        futuro contigo, es algo más que una cuestión de suerte o
+                        coincidencias.
+                    </p>
+
+                    <a href="https://youtu.be/qolpZlDPQMg?si=NTJMfFaNXauyNqIg"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 2 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        2
+                    </div>
+
+                    <h3>
+                        My Way of Life
+                    </h3>
+
+                    <h4>
+                        Frank Sinatra
+                    </h4>
+
+                    <p>
+                        No sé amar a una mujer que no seas tú, no conozco ningún
+                        camino, que no me lleve de vuelta a ti, para mí, solo existes.
+                    </p>
+
+                    <a href="https://youtu.be/OR7onE6B6_Y?si=nxUrtyzUTQSeeDPL"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 3 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        3
+                    </div>
+
+                    <h3>
+                        This I Love
+                    </h3>
+
+                    <h4>
+                        Guns N' Roses
+                    </h4>
+
+                    <p>
+                        Una carta del pasado hecha para que yo te la diera en el futuro.
+                    </p>
+
+                    <a href="https://youtu.be/hZL_ucAUTPQ?si=C3GD-zHfhZaVMeRj"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 4 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        4
+                    </div>
+
+                    <h3>
+                        Tightrope
+                    </h3>
+
+                    <h4>
+                        LP
+                    </h4>
+
+                    <p>
+                        Recuerdo habértela dedicado antes, fue en un contexto y
+                        situación parecidas y esa es la razón por la que está aquí,
+                        además que jamás olvidaré que la primera canción que me
+                        dedicaste, fue de LP, I'm Only Good With You.
+                    </p>
+
+                    <a href="https://youtu.be/ni75m1jgjiw?si=T6xpDOo8xgDo7Ekn"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+
+
+                <!-- CANCIÓN 5 -->
+
+                <div class="cancion">
+
+                    <div class="numero-cancion">
+                        5
+                    </div>
+
+                    <h3>
+                        Serendipity
+                    </h3>
+
+                    <h4>
+                        Jimin (BTS)
+                    </h4>
+
+                    <p>
+                        Sé que esta no la canta tu otro novio, y quizás no sea la
+                        mejor opción para ti, pero creo que es una forma de hablarte
+                        en tu idioma y recalcar lo que dije en la primera canción,
+                        esto es más que suerte, coincidencias, es algo que va mucho
+                        más lejos.
+                    </p>
+
+                    <a href="https://youtu.be/LNsi_d7Of7g?si=E4iXmB5rn2FJcNje"
+                       target="_blank"
+                       class="boton-cancion">
+                        🎧 Escuchar canción
+                    </a>
+
+                </div>
+
+                <!-- 🎵 CANCIÓN 6 -->
+<div class="cancion">
+    <div class="numero-cancion">6</div>
+    <h3>Un Millón de Primaveras</h3>
+    <p>Vicente Fernández</p>
+
+    <p>
+        Recuerdo que una vez, me dijiste que si rompíamos o atravesábamos
+        un mal momento y te dedicaba esta canción, volverías y me besarías
+        lo más fuerte que pudieras. No sé si te acuerdes, o incluso si lo
+        decías en serio, pero ahora mismo ruego que así sea.
+    </p>
+
+    <a href="https://youtu.be/KbMMMXXU2CM?si=myS97gT-sStN6I0b"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+
+<!-- 🎵 CANCIÓN 7 -->
+<div class="cancion">
+    <div class="numero-cancion">7</div>
+    <h3>If I Ain't Got You</h3>
+    <p>Alicia Keys</p>
+
+    <p>
+        Sabes muy bien que es verdad que en este mundo no me importa nada
+        si tú no estás ahí para verlo o compartirlo conmigo.
+    </p>
+
+    <a href="https://youtu.be/AobK5lXrYFg?si=Is30cYeJOb8xGBl8"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+
+<!-- 🎵 CANCIÓN 8 -->
+<div class="cancion">
+    <div class="numero-cancion">8</div>
+    <h3>Whatever Happens</h3>
+    <p>Michael Jackson</p>
+
+    <p>
+        Aunque el mundo se acabe, no te rindas, aférrate, porque incluso
+        si todo se derrumba, yo siempre estaré ahí para tomar tu mano,
+        pase lo que pase.
+    </p>
+
+    <a href="https://youtu.be/lhxN_Ho4jow?si=E021PDnBnE7Hd3gS"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+ <!-- 🎵 CANCIÓN 9 -->
+<div class="cancion">
+    <div class="numero-cancion">9</div>
+    <h3>I Want You Back</h3>
+    <p>NSYNC</p>
+
+    <p>
+        La única canción que pude encontrar que describe tal cual cómo me siento
+        y lo que quisiera decirte cada día, pero ntp, prometo que tenga lo que
+        tenga que hacer, te conseguiré de vuelta.
+    </p>
+
+    <a href="https://youtu.be/Jy6r_7F6NH0?si=9YTbCcE1WF3mpvmt"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>  
+                
+ <!-- 🎵 CANCIÓN 10 -->
+<div class="cancion">
+    <div class="numero-cancion">10</div>
+    <h3>I Still Loving You</h3>
+    <p>Scorpions</p>
+
+    <p>
+        Hay muchas canciones aqui, sé que no las escucharas todas 
+        o te tomaras la molestia de leer sus letras, pero, dale una oportunidad
+        a esta cancion, a nosotros, porque yo- todavia te amo.
+    </p>
+
+    <a href="https://youtu.be/u4grIEJw4ao?si=MHtS_EwSupbPx-wL"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+ <!-- 🎵 CANCIÓN 11 -->
+<div class="cancion">
+    <div class="numero-cancion">11</div>
+    <h3>Standin Next to You</h3>
+    <p>Jungkook</p>
+
+    <p>
+        Nena... Preciosa, en algun momento me diste el honor de dedicarme esta cancion, ahora dame el honor, de dedicartela honestamente y con amor, devuelta.
+    </p>
+
+    <a href="https://youtu.be/xg99M1ZMkiA?si=z7eRyurTVEZWwFrj"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+<!-- 🎵 CANCIÓN 12 -->
+<div class="cancion">
+    <div class="numero-cancion">12</div>
+    <h3>Still With You</h3>
+    <p>Jungkook(BTS)</p>
+
+    <p>
+        Lo prometi, y lo hice, aprovechando de la entrada de standing next to you a esta seccion, quise añadir una mas de-
+        (Esta vez si, tu otro novio)- Jungkook. Es una cancion que habla muy bien de lo que estamos viviendo, y espero te ayude
+        a acercarte un poco mas a mi lado de la historia.
+    </p>
+
+    <a href="https://youtu.be/YrsimYIeb8g?si=vuofPi81_7q8zSnG"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+<!-- 🎵 CANCIÓN 13 -->
+<div class="cancion">
+    <div class="numero-cancion">13</div>
+    <h3>En las Danzas y en Los Sueños</h3>
+    <p>Estoico y Valka</p>
+
+    <p>
+        No tocare mucho, porque se que esta es una fibra sensible para ti. En esta cancion se dice que no importa que tengan que atravesar
+        o que reto enfrentar si se prometen, amarse, Preciosa, no es por nada pero creo que tienes una promesa que cumplir y una nueva que formar.
+        Esto que estoy viviendo es mas duro que la peor tempestad el ardiente sol y el frio atroz, pero no parare si algun dia para siempre prometes tu
+        amarme, amarme por la eternidad. 
+    </p>
+
+    <a href="https://youtu.be/e81y94Bi3jU?si=1AToAl-cx6sVLB-8"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+
+<!-- 🎵 CANCIÓN 14 -->
+<div class="cancion">
+    <div class="numero-cancion">14</div>
+    <h3>La Nave del Olvido</h3>
+    <p>Jose Jose</p>
+
+    <p>
+        Cuanto llore añadiendo esta cancion aqui, ¿Sabes? Cuando salgamos de esto, si es que lo logramos, no te guardaria rencor alguno,
+        realmente es tan horrible, justo cuando me siento listo para darte tanto- tu quieres irte, no te culpo, pues estas cosas pasan. Pero si tan solo por un momento
+        pudieras ver lo que quisiera darte, mas alla de amor, caricias, afecto y compañia... Quisiera darte mi existencia y mi ser enteros, pasar una eternidad a tu lado... Me parto en mil pedazos.
+        pero espera, espera solo un poco mas, pues asi tenga que dar mi vida, la dare intenando volver a tu corazon, pues la muerte suena como una mejor compañia que la soledad que me espera sin ti, 
+        mi amada eterna.
+    </p>
+
+    <a href="https://youtu.be/xf6cyDfi8t8?si=Y8LrHIt067RWwN1E"
+       target="_blank"
+       class="boton-cancion">
+        Escuchar canción 🎵
+    </a>
+</div>
+                
+                
+            </div>
+
+        </section>
+
+
+
+        <!-- PUERTA LO QUE NO TE PUEDO DECIR -->
+
+        <div class="puerta-cartas">
+            <button onclick="abrirCartas()">
+                💌 LO QUE TE QUIERO DECIR 💌
+            </button>
+        </div>
+
+        <!-- CARTAS -->
+
+        <section id="cartas">
+            <h2 class="cartas-titulo">
+                💌 LO QUE TE QUIERO DECIR 💌
+            </h2>
+
+            <p class="intro-cartas">
+                Sé que hay muchas cosas en tu mente. Sé que quizás esto que estamos
+                viviendo es emocionalmente desgastante, o incluso que simplemente
+                estás ocupada.
+                <br><br>
+                Aquí te dejaré cartas, confesiones y cosas que creo que deberías saber.
+                Pero es sin compromiso.
+                <br><br>
+                No tienes que enfrentarte a todas estas cartas de una vez. Puedes abrir
+                una hoy, otra mañana, dentro de una semana o cuando simplemente sientas
+                que quieres hacerlo. Puedes leerlas todas de principio a fin, leer
+                solamente una, o incluso dejarlas para otro momento.
+                <br><br>
+                No hay ninguna prisa.
+                <br><br>
+                Y, sobre todo, no quiero que sientas que por leerlas tienes que
+                responderme. <strong>No tienes que hacerlo.</strong> Puedes leerlas y
+                quedarte con ellas para ti, si eso es lo que necesitas o lo que quieres.
+                <br><br>
+                No quiero presionarte. Solo creo que es importante que sepas esto y que
+                puedas conocer todo aquello que llevo dentro, pero
+                <strong>a tu ritmo, a tu tiempo y de la manera que tú quieras, mi corazón.</strong>
+                ❤️
+            </p>
+
+            <div class="sobres">
+                <div class="sobre" onclick="abrirCarta(1)">
+                    <span class="sobre-icono">💌</span>
+                    <h3>Una disculpa</h3>
+                </div>
+                <div class="sobre" onclick="abrirCarta(2)">
+                    <span class="sobre-icono">❤️</span>
+                    <h3>Mi persona favorita</h3>
+                </div>
+                <div class="sobre" onclick="abrirCarta(3)">
+                    <span class="sobre-icono">❓</span>
+                    <h3>¿Quién soy?</h3>
+                </div>
+                <div class="sobre" onclick="abrirCarta(4)">
+                    <span class="sobre-icono">⚖️</span>
+                    <h3>Oportunidades y decisiones</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISOR DE CARTA -->
+
+        <div id="visor-carta" onclick="cerrarCartaDesdeFondo(event)">
+            <article class="carta-papel">
+                <div id="contenido-carta" class="carta-texto"></div>
+                <button class="cerrar-carta" onclick="cerrarCarta()">
+                    Cerrar carta ❤️
+                </button>
+            </article>
+        </div>
+
+
+        <!-- REGALO -->
+
+        <section class="seccion">
+
+            <h2>
+                🎁 Un regalito para ti
+            </h2>
+
+            <p>
+             ¿Adivina que? NUEVO REGALITO MI AMOR, MUAK
+            </p>
+
+            <div class="regalo">
+
+                <button onclick="mostrarRegalo()">
+                    Abrir regalo 🎁
+                </button>
+
+                <div id="mensaje" class="mensaje">
+
+                    Para la main juno mas guapa que existe 
+
+                    <img src="foto-regalo.jpeg"
+                         alt="Un regalito para ti"
+                         class="foto-regalo">
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- FIRMA -->
+
+        <div class="firma">
+
+            Hecho con fe, amor y la esperanza de muchos años mas juntos y tambien,
+            a sabiendas de que puede, que no me elijas a mi para tu futuro, quiero que sepas
+            que seguire actualizando esta pagina, incluso si me dejas con nuestros recuerdos,
+            con nuestros poemas y lo mas bello que compartimos para que siempra puedas visitarlo
+            y recordar el pasado o quien sabe, incluso puedas tomar la decision de revivirlo conmigo,
+            pero igual en lo que intento salvarnos, pasate por aqui de vez en cuando,
+            quien sabe y te llevas mas sorpresitas ;)
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function entrar() {
+
+            document.querySelector(".portada").style.display = "none";
+
+            document.getElementById("contenido").style.display = "block";
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        function abrirRecuerdos() {
+
+            document.querySelector(".puerta-recuerdos").style.display = "none";
+
+            document.getElementById("album").style.display = "block";
+
+        }
+
+
+        function abrirPienso() {
+            document.querySelector(".puerta-pienso").style.display = "none";
+            document.getElementById("pienso").style.display = "block";
+            document.getElementById("pienso").scrollIntoView({behavior:"smooth", block:"start"});
+        }
+
+        function abrirRazones() {
+            document.querySelector(".puerta-razones").style.display = "none";
+            document.getElementById("razones").style.display = "block";
+            document.getElementById("razones").scrollIntoView({behavior:"smooth", block:"start"});
+        }
+
+        function abrirDedicatorias() {
+
+            document.querySelector(".puerta-dedicatorias").style.display = "none";
+
+            document.getElementById("dedicatorias").style.display = "block";
+
+        }
+
+
+        function mostrarRegalo() {
+
+            document.getElementById("mensaje").style.display = "block";
+
+        }
+
+        /* ============================= */
+        /* CARTAS */
+        /* ============================= */
+
+        const cartas = {
+            1: {
+                titulo: "💌 Una disculpa",
+                texto: `
+                    <p>¿Sabes? Lo que está pasando, lo que estás sintiendo ahora mismo, no es nuevo para mí, ni mucho menos. No solo no es nuevo, sino que lo entiendo.</p>
+                    <p>Esther, mi amada y hermosa niña, me cuesta admitirlo, pero yo sé que, en el fondo, yo te hice esto. Yo mal encaminé nuestra relación y no te traté como debía. Sé que mi presencia dejó de ser algo que te gustara y se volvió algo que te desgastaba emocionalmente. Sé que llegué a alejarte. Sin querer, pero lo hice.</p>
+                    <p>Y el hecho de que ni siquiera puedas sentir algo de empatía por mí no es tu culpa, es mía, puesto que en ti no solo veo que peligra lo más valioso que tengo, sino que también veo un reflejo de cómo me he portado estos últimos meses.</p>
+                    <p>No quiero que estas sean unas disculpas vacías, ni que las confundas con un intento de ganarte de vuelta. Que lo quiero, sí, pero ese no es el asunto. El punto es que te fallé: como novio, como tu hombre, como la persona que tiene que amarte. Y permití que llegáramos a esto.</p>
+                    <p>Una relación es un espacio seguro. Es tener a alguien que te apoya y no te agota, sino que, al contrario, te ayuda a tener energía para seguir con el día a día.</p>
+                    <p>Yo me sentí como tú te estás sintiendo ahora mismo, por culpa mía; por disputas, por estupideces, o guiado por miedo, inseguridad o rencores fantasma que nunca tuve que haber tenido.</p>
+                    <p>Hubiera seguido así de no ser porque me di cuenta de algo. Tarde, pero lo hice. Y ruego a la vida, a tu corazón e incluso al universo, con la luna y las estrellas como testigos de mi dolor, que todavía esté a tiempo de arreglarlo.</p>
+                    <p>Me di cuenta de que esto no tiene que ser así, de que lo que hicimos no es el camino y de que, a pesar de que podamos ignorarlo o fingir que no existe, hay un hecho entre los dos que es innegable y que es la razón por la que lo que tenemos es algo tan importante como la vida misma.</p>
+                    <p>Podemos estar bien. Podemos seguir adelante, incluso conocer nuevas personas, reírnos de nuevos chistes, encontrar descanso en otros hombros. Pero, a pesar de que ahora mismo estoy cada día más cerca de no ser la persona que elegirías por encima de cualquier cosa en este mundo, o puede que ya ni lo sea, tú para mí todavía eres y siempre serás el ser más importante en mi vida.</p>
+                    <p>La mujer que elegiría por encima de cualquier otra mujer.</p>
+                    <p>La persona que, si el mundo acabara, elegiría para pasar mis últimos momentos con ella.</p>
+                    <p>El alma que me gustaría que pasara lo que me queda de vida a mi lado.</p>
+                    <p>Sé que puedes estar bien sin mí. Sé que puedes reírte con otras personas. Sé mil cosas.</p>
+                    <p>Pero ¿qué es la vida sin alguien que su vida seas tú?</p>
+                    <p>Yo te daré la respuesta: vacío.</p>
+                    <p>Y me niego a dejar que la mujer que más amo en el mundo llegue a ese vacío y lo viva. Me niego a no intentar que mi amada mujer me regrese a ese sitio donde pertenezco.</p>
+                    <p>Pero, pase lo que pase, tú para mí siempre serás la cosa número uno en este mundo.</p>
+                    <p>Y te pido perdón por no haberte tratado como debía, por permitirnos llegar a esto.</p>
+                    <p>Haré lo que haga falta por lograr entrar de nuevo a tu corazón, mujer. Lo prometo con cada célula y átomo de mi cuerpo, con todas las fibras de ser que tiene Miguel Ángel Chaverra, que sufren aterrorizadas con la idea de perderte, cambiare y sere un mejor hombre por ti.</p>
+                    <p>Ojalá puedas perdonarme.</p>
+                    <p>Ojalá podamos salir adelante.</p>
+                    <p>Ojalá puedas seguir amándome.</p>
+                    <p>Porque yo jamás podría dejar de amarte.</p>
+                    <p><strong>Eres mi persona favorita.</strong></p>`
+            },
+            2: {
+                titulo: "❤️ Mi persona favorita",
+                texto: `
+                    <p>Mi preciosa Esther:</p>
+                    <p>Con esta carta hago un poco de trampa, pues va un poco de la mano con la carta anterior, pero quería explayarme en el concepto de lo que es para mí mi persona favorita. Y no solo que lo entiendas, sino que sepas el porqué lo eres y qué significa para mí que ese lugar en mi vida lo ocupes tú.</p>
+                    <p>¿Has visto esos videos tontos donde la gente pregunta: <em>“Si él estuviera en una habitación llena de personas…”</em> o <em>“¿Él podría identificar tu risa, tus labios, tus caricias entre miles de personas?”</em>, y etcétera?</p>
+                    <p>Mujer, no solo podría, sino que, al saber que eres tú, saldría corriendo hacia tus brazos.</p>
+                    <p>¿Recuerdas esa escena de <em>La boticaria</em> donde Lakan explica cómo veía el mundo y a la gente antes y después de conocer a la madre de Maomao? ¿Recuerdas cómo los veía? ¿Como piezas?</p>
+                    <p>Para mí ni siquiera es eso.</p>
+                    <p>No soy un manipulador, tampoco un especialista ni mucho menos un genio, pero cuando te comparo a ti con cualquier otra mujer en este mundo, mi linda y dulce Esther, no puedo evitar sentir que este mundo es plano, que no tiene vida ni color.</p>
+                    <p>Puedo encontrar belleza, sentido y significado en los demás, pero no se comparan ni un poco con lo que siento cuando te veo a ti o tu recuerdo llega a mi mente. Es como si perdiera cualquier definición, opinión o incluso sentido, y simplemente todo aquello que tú demuestras ante mis ojos y mi corazón se volviera la perfección.</p>
+                    <p>Cuando te conocí, hermosa, cuando te conocí, y hablo de hace años, fue la primera vez que sentí en mi vida que había conocido realmente a un ser humano.</p>
+                    <p>Estabas tan llena de personalidad, de tantos sentimientos. Eras tan complicada y compleja como cualquiera, pero dulce y hermosa como ninguna.</p>
+                    <p>Tu rostro, tu cuerpo también pasaron por lo mismo, y perdí completamente el norte cuando conocí tu desnudez. Es un trance del que no he podido ni quisiera salir, incluso a día de hoy.</p>
+                    <p>Nada se siente bien si no eres tú.</p>
+                    <p>Nada se siente tanto como lo siento cuando lo haces tú.</p>
+                    <p>Nadie me logra hacer tan feliz como lo haces tú.</p>
+                    <p>Nada me prende, acelera y me vuelve tan loco como tú.</p>
+                    <p>Tu corazón, tu alma y tu cuerpo.</p>
+                    <p>Mercedes Esther Hernández Bautista, quizás eso explica por qué, a lo largo de los años, me obsesioné tanto contigo. Porque eres mi persona favorita en este mundo. Porque, realmente, eres la única persona para mí en este mundo.</p>
+                    <p>Y, además, la única con todo: un corazón enorme, un alma preciosa y un ser divino.</p>
+                    <p>Eres y siempre serás el honor más grande del mundo que yo jamás podría haber tenido.</p>
+                    <p>Conocerte, abrazarte, besarte y poder mirarte a los ojos y decirte que te amo es el regalo más precioso que me ha dado este mundo.</p>`
+            },
+            3: {
+                titulo: "❓ ¿Quién soy?",
+                texto: `
+                    <p>Soy quien soy, lo que soy, pero, a la vez, soy nadie sin ti, mujer.</p>
+                    <p>No sabes cómo he sufrido todos estos días. Por favor, escúchame bien: no pienses que es una exageración, como siempre lo haces, o simplemente una forma poética de decirte que me encuentro mal.</p>
+                    <p>He vivido todo este tiempo, y todo lo que soy y he sido no tiene sentido alguno si no lo soy por ti.</p>
+                    <p>Un amante, un novio, un esposo, un amigo, un compañero e incluso... un enemigo, un villano, un despreciable y un imbécil.</p>
+                    <p>He sido arriba, he sido abajo, pero he sido. Y todo lo que he sido, lo he sido por ti.</p>
+                    <p>Miguel Ángel Chaverra no es nadie sin ti.</p>
+                    <p>Confío en que leerás esta carta algún día, pero no hoy. Pero, si lo haces hoy, que sepas que, aunque digas que no sientes nada ante mi pena y desesperación, no puedo evitar sentir que tengo que gritarte que te extraño.</p>
+                    <p>Y te extraño mucho.</p>
+                    <p>Escribo esto con cansancio y con lágrimas en los ojos porque hace días que no duermo. El llanto y el miedo no me dejan descansar. La inmensa presión que hace en mi pecho la idea de perderte y saber que estás por ahí ignorándome me rompe y me desgarra sin que yo pueda hacer nada al respecto.</p>
+                    <p>Y no te pido que dejes de hacerlo, puesto que no tengo derecho a pedirte nada.</p>
+                    <p>Pero ¿sabías que hoy, que viene siendo la fecha en la que hago esta carta, 13 de septiembre de 2026, a las 12 de la noche, que hoy —no sé si te acordarás— te respondí un mensaje a las 5 de la mañana, otro a las 6, otro a las 11 y un último a las 12?</p>
+                    <p>Preciosa, amada mía, no es que madrugara ni que tus notificaciones me despertaran.</p>
+                    <p>Es que no pude dormir por ver el celular, por esperar tu mensaje, por esperarte a ti.</p>
+                    <p>Esta situación, esto que estamos viviendo... yo no soy persona. Yo no soy ni seré humano hasta que, si se puede, y rezo para que pueda, te recupere.</p>
+                    <p>Soy quien soy. Soy miles de cosas, y por ti he sido millones. Pero sin tu amor, lindura, solo soy un errante, un vagabundo, viento que no arrastra lleva o acaricia, fuego que no quema ni consume, agua que no fluye ni da vida, tierra que no brota ni da fruto.</p>
+                    <p>Sin ti, no sé quién soy.</p>
+                    <p>O tal vez, sin ti, simplemente no soy nada.</p>
+                    <p>Pero, por ahora, me aferraré con uñas y dientes a lo único que me queda y a lo que he sido siempre desde que empezamos:</p>
+                    <p><strong>el hombre que más te ama en este mundo.</strong></p>`
+            },
+            4: {
+                titulo: "⚖️ Oportunidades y decisiones",
+                texto: `
+                    <p>Hasta ahora, he sido bastante poético y no tan directo con lo que quiero decir en mis cartas y poemas, pero realmente quiero que esta sea cruda y directa, para que represente exactamente mi punto de vista, lo que siento y lo que creo.</p>
+                    <p>Estoy horriblemente cansado. He tenido, digamos, unos problemas; además, mamá casi se va al hospital y han pasado muchas cosas. Todo lo que necesitas saber es que no hay nada de lo que alarmarse, pero siento que mi cabeza va a estallar y, aun así, solo puede pensar en el hecho de que no quiero perderte a ti ni a lo que tenemos.</p>
+                    <p>Y luego de todo este infierno emocional que he estado pasando, siento que quizás me estoy ganando un poco de tu compasión. ¿Quizás? Realmente no lo sé. No sé si es cariño, si hay algo en ti que todavía siente algo por mí o si simplemente soy yo haciéndome falsas esperanzas. Quizás ni siquiera me compadeces, sino que ahora me desprecias más. No lo sé.</p>
+                    <p>Aun así, lo seguiré intentando.</p>
+                    <p>Pero antes de hacerlo, tenía que dejar algo en claro. Incluso si nunca lees esto, por lo menos quizás escribirlo ayude a quitar un poco de peso de mis hombros.</p>
+                    <p>No sabes el error tan enorme que siento que es esta situación. Todo el mundo es una mierda. La gente es una mierda, las relaciones son una mierda y podría seguir media hora diciendo lo mierda que me parece la forma en que funcionan las interacciones y el desarrollo de las relaciones en esta sociedad.</p>
+                    <p><strong>PERO</strong> todo el punto de esto es que quizás, entre tú y yo, solo quizás, existe una posibilidad de ser una de esas pocas, poquísimas relaciones donde hay algo de verdad; donde entre ambos hay algo genuino y, no solo eso, un amor divino, único y, si me apuras, hasta irrepetible.</p>
+                    <p>Depende de las prioridades de cada persona, claro, pero no comparto un mundo donde algo como esto no sea una de las cosas más importantes para una persona.</p>
+                    <p>¿Sabes qué tan raro e importante es esto? ¿Sabes qué tan poco común es una relación como la nuestra? Y no solo eso, ¿qué tan poco común es lograr salir adelante después de todo lo que hemos vivido?</p>
+                    <p>Somos uno en un billón.</p>
+                    <p>Sé que no eres como yo. Sé que eres una persona más fría y menos sentimental en muchos aspectos. No sé qué es lo que crees. No sé siquiera si nos subestimas y piensas que yo solo puedo ser una más de las personas que han pasado por tu vida, o si simplemente crees que no quieres, ni jamás vas a querer o necesitar a alguien.</p>
+                    <p>No sé si crees que ya encontraste algo mejor con alguien más.</p>
+                    <p>Pero para mí, me estás quitando lo más preciado que tengo y la cosa con más importancia y significado que he hecho en mi vida. Algo más valioso que el dinero, las joyas o hasta la fama:</p>
+                    <p><strong>el amor.</strong></p>
+                    <p>La oportunidad de amarte y de darte ese amor.</p>
+                    <p>Te seguiré amando pasen los años o las décadas, pero ¿qué será de ese amor si te vas?</p>
+                    <p>Mi corazón seguirá latiendo por ti, pero no lo hará con la misma fuerza que lo hace sabiendo que hay alguien al otro lado que quiere escucharlo.</p>
+                    <p>Todo ese amor que te podría dar, ¿morirá en unas manos que buscan acariciarte? ¿En unos labios que buscan besarte? ¿En un corazón que busca amarte?</p>
+                    <p>Toda esta extraña cruzada donde me desgasto y ruego por un poco de tu benevolencia es un error. El más grande error de mi vida y, probablemente, uno de los errores más grandes que tú podrías cometer en la tuya.</p>
+                    <p>Y con todo el dolor en el alma, pero también con todo mi amor, te digo que ojalá no.</p>
+                    <p>Ojalá que, si te vas, puedas ser la mujer más feliz del mundo. Y, lo más importante, que puedas ser amada.</p>
+                    <p>Incluso si para ti no parece tan importante, no quiero que una mujer como tú pueda pasar por esta vida sin conocer un amor que la haga sentirse verdaderamente amada.</p>
+                    <p>Pondría estas palabras sobre mi tumba si fuera necesario: no hay un ser que pueda amarte de la misma manera, en la misma cantidad y misma fuerza como en la que yo te he amado en esta vida. Pero, aunque alguien no te vaya a amar tanto como yo, igualmente me parecería un crimen que una mujer como tú no fuera profundamente amada.</p>
+                    <p>Ojalá encuentres a alguien que te ame, que te valore y con quien puedas salir adelante.</p>
+                    <p>A pesar de todo, sigo creyendo que esta es, tanto para ti como para mí, una de las últimas o la última oportunidad que tendremos de experimentar algo como eso.</p>
+                    <p>Porque si te vas, Miguel Ángel Chaverra Aguilar morirá.</p>
+                    <p>Quizás para ti, de manera ilusa o equivocada, esto sea simplemente cerrar un capítulo o avanzar en un largo camino. Pero para mí significa despedirme de quién fui, de quién soy y de quién imaginé que sería.</p>
+                    <p>Y tengo la certeza de que, si algún día decides irte, será una de las pérdidas más grandes que tendremos en la vida.</p>
+                    <p>Solo rezo, con todas mis fuerzas, para que jamás tengas que ver o experimentar las consecuencias de aquella decisión.</p>
+                    <p>Porque tenemos en nuestras manos algo muy importante.</p>
+                    <p><strong>NO LO SUELTES.</strong></p>
+                    <p>Ven y pasa un rato conmigo.</p>
+                    <p>Incluso si ya no me ves digno de dedicarme tus noches y tu tiempo.</p>
+                    <p>Ojalá hoy, mañana o en algún momento del futuro lo hagas.</p>
+                    <p>Porque, créeme, cada día puedo un poco menos y duele mucho más sentir cómo me ignoras y tu abandono.</p>
+                    <p>Y quizás esta sea la última oportunidad.</p>`
+            }
+        };
+
+        function abrirCartas() {
+            document.querySelector(".puerta-cartas").style.display = "none";
+            document.getElementById("cartas").style.display = "block";
+            document.getElementById("cartas").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+        function abrirCarta(numero) {
+            const carta = cartas[numero];
+            document.getElementById("contenido-carta").innerHTML =
+                `<h2>${carta.titulo}</h2>${carta.texto}`;
+            const visor = document.getElementById("visor-carta");
+            visor.classList.add("visible");
+            document.body.style.overflow = "hidden";
+            document.querySelector(".carta-papel").scrollTop = 0;
+        }
+
+        function cerrarCarta() {
+            document.getElementById("visor-carta").classList.remove("visible");
+            document.body.style.overflow = "";
+        }
+
+        function cerrarCartaDesdeFondo(event) {
+            if (event.target.id === "visor-carta") {
+                cerrarCarta();
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                cerrarCarta();
+            }
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>
